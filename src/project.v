@@ -52,6 +52,9 @@ module tt_um_vga_hello_world(
   // Suppress unused signals warning
   wire _unused_ok = &{ena, ui_in, uio_in};
 
+  // Colors that change with the beat
+  reg [1:0] beat_r, beat_g, beat_b;
+
   hvsync_generator hvsync_gen(
     .clk(clk),
     .reset(~rst_n),
@@ -107,10 +110,17 @@ module tt_um_vga_hello_world(
   
   // Visual logic with audio-synchronized effects
   always @(*) begin
+    
+    // Valores por defecto para evitar latches
+    beat_r = 2'b00;
+    beat_g = 2'b00;
+    beat_b = 2'b00;
+    R = 2'b00;
+    G = 2'b00;
+    B = 2'b00;
+
     if (video_active) begin
-      // Colors that change with the beat
-      reg [1:0] beat_r, beat_g, beat_b;
-      
+           
       // Base colors that change with the musical beat
       case(beat)
         3'd0: {beat_r, beat_g, beat_b} = 6'b110000; // Red
@@ -121,6 +131,7 @@ module tt_um_vga_hello_world(
         3'd5: {beat_r, beat_g, beat_b} = 6'b001111; // Cyan
         3'd6: {beat_r, beat_g, beat_b} = 6'b111000; // Orange
         3'd7: {beat_r, beat_g, beat_b} = 6'b101010; // Gray
+        default: {beat_r, beat_g, beat_b} = 6'b000000; // Black (default)
       endcase
       
       // H - Pulses with the sound
