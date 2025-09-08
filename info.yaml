@@ -4,7 +4,7 @@ project:
   title:        "VGA HELLO WORLD"      # Project title
   author:       "Enmanuel Rodriguez"      # Your name
   discord:      "enma11235"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Print HELLO WORLD in VGA monitor"      # One line description of what your project does
+  description:  "Display 'HELLO WORLD' on a VGA monitor"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     25175000       # Clock frequency in Hz (or 0 if not applicable)
 
